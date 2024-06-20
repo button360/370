@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Useless Buttons</title>
+    <style>
+        /* Trying to make these buttons look not too bad */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        /* Colors are fun, right? */
+        h1 {
+            color: #333;
+        }
+        /* Organizing stuff, because chaos is not cool */
+        .button-container, .scale-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        /* Making buttons button-like */
+        .button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            background-color: #3498db;
+            color: #fff;
+            border-radius: 5px;
+            outline: none;
+            transition: transform 0.3s ease;
+        }
+        /* Hover effect because it's fancy */
+        .button:hover {
+            background-color: #2980b9;
+        }
+        /* Spin animation for the "Useless" button, because why not? */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        /* Adding spin class, just for kicks */
+        .spin-animation {
+            animation: spin 1s linear;
+        }
+
+        /* Wobble animation for the "Even More Useless" button, just because */
+        @keyframes wobble {
+            0% { transform: translateX(0); }
+            15% { transform: translateX(-10px) rotate(-5deg); }
+            30% { transform: translateX(10px) rotate(5deg); }
+            45% { transform: translateX(-10px) rotate(-5deg); }
+            60% { transform: translateX(10px) rotate(5deg); }
+            75% { transform: translateX(-10px) rotate(-5deg); }
+            100% { transform: translateX(0); }
+        }
+        /* Adding wobble class because wobbles are cool */
+        .wobble-animation {
+            animation: wobble 1s ease-in-out;
+        }
+
+        /* Making the scale look not too bad */
+        .useless-scale {
+            width: 300px;
+            margin: 20px;
+        }
+        /* Scale label styling, because we need labels */
+        .output-label {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <!-- The big title for our very important page -->
+    <h1>Useless Buttons</h1>
+    <!-- Container to keep our buttons in line -->
+    <div class="button-container">
+        <!-- The button that spins like a top -->
+        <button id="useless-btn" class="button" onclick="spinButton()">Useless</button>
+        <!-- The button that wobbles like jelly -->
+        <button id="even-more-useless-btn" class="button" onclick="wobbleButton()">Even More Useless</button>
+    </div>
+    <!-- Container for our super important useless scale -->
+    <div class="scale-container">
+        <input type="range" id="useless-scale" class="useless-scale" min="0" max="100" value="50" oninput="updateScaleOutput()">
+    </div>
+    <!-- Label to show the value of our amazing scale -->
+    <div id="scale-output" class="output-label">Useless Scale: 50</div>
+
+    <!-- Secret scripts to make our buttons and scale do stuff -->
+    <script>
+        // Function to make the "Useless" button spin like crazy
+        function spinButton() {
+            var button = document.getElementById('useless-btn');
+            button.classList.add('spin-animation');
+            setTimeout(function() {
+                button.classList.remove('spin-animation');
+            }, 1000); // Just 1 second, because we don't want anyone to get dizzy
+        }
+
+        // Function to make the "Even More Useless" button wobble like jelly
+        function wobbleButton() {
+            var button = document.getElementById('even-more-useless-btn');
+            button.classList.add('wobble-animation');
+            setTimeout(function() {
+                button.classList.remove('wobble-animation');
+            }, 1000); // 1 second of wobbly fun
+        }
+
+        // Function to update the label for our super cool useless scale
+        function updateScaleOutput() {
+            var scale = document.getElementById('useless-scale');
+            var output = document.getElementById('scale-output');
+            output.textContent = 'Useless Scale: ' + scale.value;
+        }
+    </script>
+</body>
+</html>
