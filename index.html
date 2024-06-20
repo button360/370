@@ -1,122 +1,605 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Useless Buttons</title>
-    <style>
-        /* Trying to make these buttons look not too bad */
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 50px;
-        }
-        /* Colors are fun, right? */
-        h1 {
-            color: #333;
-        }
-        /* Organizing stuff, because chaos is not cool */
-        .button-container, .scale-container {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
-        /* Making buttons button-like */
-        .button {
-            padding: 10px 20px;
-            font-size: 16px;
-            margin: 10px;
-            cursor: pointer;
-            border: none;
-            background-color: #3498db;
-            color: #fff;
-            border-radius: 5px;
-            outline: none;
-            transition: transform 0.3s ease;
-        }
-        /* Hover effect because it's fancy */
-        .button:hover {
-            background-color: #2980b9;
-        }
-        /* Spin animation for the "Useless" button, because why not? */
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        /* Adding spin class, just for kicks */
-        .spin-animation {
-            animation: spin 1s linear;
-        }
+<meta charset="UTF-8">
+<title>Useless Buttons and Switches</title>
+<style>
+/* Body styles */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 50px;
+    background-color: #f0f0f0;
+    transition: background-color 0.5s;
+}
 
-        /* Wobble animation for the "Even More Useless" button, just because */
-        @keyframes wobble {
-            0% { transform: translateX(0); }
-            15% { transform: translateX(-10px) rotate(-5deg); }
-            30% { transform: translateX(10px) rotate(5deg); }
-            45% { transform: translateX(-10px) rotate(-5deg); }
-            60% { transform: translateX(10px) rotate(5deg); }
-            75% { transform: translateX(-10px) rotate(-5deg); }
-            100% { transform: translateX(0); }
-        }
-        /* Adding wobble class because wobbles are cool */
-        .wobble-animation {
-            animation: wobble 1s ease-in-out;
-        }
+/* Header styles */
+h1 {
+    color: #333;
+    text-transform: uppercase;
+    transform: rotate(-2deg); /* Slight tilt */
+    margin-bottom: 30px;
+}
 
-        /* Making the scale look not too bad */
-        .useless-scale {
-            width: 300px;
-            margin: 20px;
-        }
-        /* Scale label styling, because we need labels */
-        .output-label {
-            margin-top: 10px;
-            font-size: 16px;
-            color: #333;
-        }
-    </style>
+/* Container for buttons */
+.button-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+/* Button styles */
+.button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 10px;
+    cursor: pointer;
+    border: none;
+    background-color: #3498db;
+    color: #fff;
+    border-radius: 5px;
+    outline: none;
+    transition: transform 0.3s ease, background-color 0.3s;
+    transform: rotate(calc(-5deg + (10deg * var(--random-tilt)))); /* Random tilt */
+}
+
+.button:hover {
+    background-color: #2980b9;
+    transform: scale(1.1); /* Scale on hover */
+}
+
+/* Keyframe animations */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes wobble {
+    0% { transform: translateX(0); }
+    15% { transform: translateX(-10px) rotate(-5deg); }
+    30% { transform: translateX(10px) rotate(5deg); }
+    45% { transform: translateX(-10px) rotate(-5deg); }
+    60% { transform: translateX(10px) rotate(5deg); }
+    75% { transform: translateX(-10px) rotate(-5deg); }
+    100% { transform: translateX(0); }
+}
+
+@keyframes fade {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
+    20%, 40%, 60%, 80%, 100% { transform: translateX(10px); }
+}
+
+@keyframes enlarge {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+@keyframes jump {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0); }
+}
+
+@keyframes move {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(-20px); }
+    100% { transform: translateX(0); }
+}
+
+/* Animation classes */
+.spin-animation {
+    animation: spin 1s linear;
+}
+
+.wobble-animation {
+    animation: wobble 1s ease-in-out;
+}
+
+.fade-animation {
+    animation: fade 2s infinite;
+}
+
+.blink-animation {
+    animation: blink 1s infinite;
+}
+
+.shake-animation {
+    animation: shake 1s ease-in-out;
+}
+
+.enlarge-animation {
+    animation: enlarge 1s ease-in-out;
+}
+
+.jump-animation {
+    animation: jump 1s ease-in-out;
+}
+
+.move-animation {
+    animation: move 1s ease-in-out;
+}
+
+/* Container for switches */
+.switch-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+/* Switch styles */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    transform: rotate(calc(-2deg + (4deg * var(--random-tilt)))); /* Random tilt */
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+    transform: rotate(calc(-2deg + (4deg * var(--random-tilt)))); /* Random tilt */
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+/* Container for scale and labels */
+.scale-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+/* Scale input styles */
+.useless-scale {
+    width: 300px;
+    margin: 20px;
+    transform: rotate(calc(-3deg + (6deg * var(--random-tilt)))); /* Random tilt */
+}
+
+/* Scale label styles */
+.output-label {
+    font-size: 16px;
+    color: #333;
+    transform: rotate(calc(-2deg + (4deg * var(--random-tilt)))); /* Random tilt */
+}
+
+/* Container for checkboxes */
+.checkbox-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+/* Checkbox styles */
+.checkbox {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #3498db;
+    border-radius: 5px;
+    margin: 10px;
+    cursor: pointer;
+    transform: rotate(calc(-4deg + (8deg * var(--random-tilt)))); /* Random tilt */
+}
+
+.checkbox:checked {
+    background-color: #3498db;
+}
+
+.checkbox-label {
+    font-size: 16px;
+    color: #333;
+    margin: 10px;
+    transform: rotate(calc(-4deg + (8deg * var(--random-tilt)))); /* Random tilt */
+}
+
+/* Container for text input */
+.text-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+/* Text input styles */
+.useless-text {
+    padding: 10px;
+    border: 2px solid #3498db;
+    border-radius: 5px;
+    margin: 10px;
+    transform: rotate(calc(-2deg + (4deg * var(--random-tilt)))); /* Random tilt */
+}
+
+/* Hidden message styles */
+.color-message-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.hidden-message {
+    display: none;
+    color: red;
+    font-size: 20px;
+    margin-top: 20px;
+    transform: rotate(calc(-2deg + (4deg * var(--random-tilt)))); /* Random tilt */
+}
+
+/* Container for dropdown */
+.dropdown-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+/* Dropdown styles */
+.useless-dropdown {
+    padding: 10px;
+    border: 2px solid #3498db;
+    border-radius: 5px;
+    margin: 10px;
+    transform: rotate(calc(-3deg + (6deg * var(--random-tilt)))); /* Random tilt */
+}
+
+/* Dropdown label styles */
+.output-label-dropdown {
+    font-size: 16px;
+    color: #333;
+    transform: rotate(calc(-2deg + (4deg * var(--random-tilt)))); /* Random tilt */
+}
+
+/* Container for useless paragraph */
+.paragraph-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+/* Paragraph styles */
+.useless-paragraph {
+    padding: 10px;
+    border: 2px solid #3498db;
+    border-radius: 5px;
+    color: #3498db;
+    margin: 20px;
+    transform: rotate(calc(-1deg + (2deg * var(--random-tilt)))); /* Random tilt */
+}
+
+/* Container for useless image */
+.image-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+/* Image styles */
+.useless-image {
+    border: 2px solid #3498db;
+    border-radius: 5px;
+    margin: 10px;
+    transform: rotate(calc(-3deg + (6deg * var(--random-tilt)))); /* Random tilt */
+}
+
+/* Container for useless progress bar */
+.progress-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+/* Progress bar styles */
+.useless-progress {
+    width: 300px;
+    margin: 20px;
+    transform: rotate(calc(-2deg + (4deg * var(--random-tilt)))); /* Random tilt */
+}
+</style>
 </head>
 <body>
-    <!-- The big title for our very important page -->
-    <h1>Useless Buttons</h1>
-    <!-- Container to keep our buttons in line -->
-    <div class="button-container">
-        <!-- The button that spins like a top -->
-        <button id="useless-btn" class="button" onclick="spinButton()">Useless</button>
-        <!-- The button that wobbles like jelly -->
-        <button id="even-more-useless-btn" class="button" onclick="wobbleButton()">Even More Useless</button>
-    </div>
-    <!-- Container for our super important useless scale -->
-    <div class="scale-container">
-        <input type="range" id="useless-scale" class="useless-scale" min="0" max="100" value="50" oninput="updateScaleOutput()">
-    </div>
-    <!-- Label to show the value of our amazing scale -->
-    <div id="scale-output" class="output-label">Useless Scale: 50</div>
+<!-- Header -->
+<h1>Useless Buttons and Switches</h1>
 
-    <!-- Secret scripts to make our buttons and scale do stuff -->
-    <script>
-        // Function to make the "Useless" button spin like crazy
-        function spinButton() {
-            var button = document.getElementById('useless-btn');
-            button.classList.add('spin-animation');
-            setTimeout(function() {
-                button.classList.remove('spin-animation');
-            }, 1000); // Just 1 second, because we don't want anyone to get dizzy
-        }
+<!-- Container for buttons -->
+<div class="button-container">
+    <!-- Button that spins -->
+    <button id="useless-btn" class="button" onclick="spinButton()">Useless Spin</button>
+    <!-- Button that wobbles -->
+    <button id="even-more-useless-btn" class="button" onclick="wobbleButton()">Useless Wobble</button>
+    <!-- Button that fades -->
+    <button id="fading-btn" class="button" onclick="fadeButton()">Useless Fade</button>
+    <!-- Button that blinks -->
+    <button id="blink-btn" class="button" onclick="blinkButton()">Useless Blink</button>
+    <!-- Button that shakes -->
+    <button id="shake-btn" class="button" onclick="shakeButton()">Useless Shake</button>
+    <!-- Button that enlarges -->
+    <button id="enlarge-btn" class="button" onclick="enlargeButton()">Useless Enlarge</button>
+    <!-- Button that jumps -->
+    <button id="jump-btn" class="button" onclick="jumpButton()">Useless Jump</button>
+    <!-- Button that moves -->
+    <button id="move-btn" class="button" onclick="moveButton()">Useless Move</button>
+    <!-- Additional buttons -->
+    <button class="button" onclick="uselessAction()">Another Useless Action</button>
+    <button class="button" onclick="anotherUselessAction()">Yet Another Useless Action</button>
+    <button class="button" onclick="oneMoreUselessAction()">One More Useless Action</button>
+</div>
 
-        // Function to make the "Even More Useless" button wobble like jelly
-        function wobbleButton() {
-            var button = document.getElementById('even-more-useless-btn');
-            button.classList.add('wobble-animation');
-            setTimeout(function() {
-                button.classList.remove('wobble-animation');
-            }, 1000); // 1 second of wobbly fun
-        }
+<!-- Container for switches -->
+<div class="switch-container">
+    <!-- Switch 1 -->
+    <label class="switch" style="--random-tilt: 0.1;">
+        <input type="checkbox" checked>
+        <span class="slider"></span>
+    </label>
+    <!-- Switch 2 -->
+    <label class="switch" style="--random-tilt: 0.2;">
+        <input type="checkbox">
+        <span class="slider"></span>
+    </label>
+    <!-- Switch 3 -->
+    <label class="switch" style="--random-tilt: 0.3;">
+        <input type="checkbox" checked>
+        <span class="slider"></span>
+    </label>
+    <!-- Switch 4 -->
+    <label class="switch" style="--random-tilt: 0.4;">
+        <input type="checkbox">
+        <span class="slider"></span>
+    </label>
+    <!-- Switch 5 -->
+    <label class="switch" style="--random-tilt: 0.5;">
+        <input type="checkbox">
+        <span class="slider"></span>
+    </label>
+    <!-- Switch 6 -->
+    <label class="switch" style="--random-tilt: 0.6;">
+        <input type="checkbox" checked>
+        <span class="slider"></span>
+    </label>
+    <!-- Switch 7 -->
+    <label class="switch" style="--random-tilt: 0.7;">
+        <input type="checkbox">
+        <span class="slider"></span>
+    </label>
+    <!-- Switch 8 -->
+    <label class="switch" style="--random-tilt: 0.8;">
+        <input type="checkbox" checked>
+        <span class="slider"></span>
+    </label>
+    <!-- Switch 9 -->
+    <label class="switch" style="--random-tilt: 0.9;">
+        <input type="checkbox">
+        <span class="slider"></span>
+    </label>
+    <!-- Switch 10 -->
+    <label class="switch" style="--random-tilt: 1.0;">
+        <input type="checkbox">
+        <span class="slider"></span>
+    </label>
+</div>
 
-        // Function to update the label for our super cool useless scale
-        function updateScaleOutput() {
-            var scale = document.getElementById('useless-scale');
-            var output = document.getElementById('scale-output');
-            output.textContent = 'Useless Scale: ' + scale.value;
-        }
-    </script>
+<!-- Container for scale input -->
+<div class="scale-container">
+    <input type="range" min="1" max="10" value="5" class="useless-scale" id="useless-scale" oninput="updateScaleOutput()" style="--random-tilt: 0.5;">
+    <output for="useless-scale" id="scale-output" class="output-label">Useless Scale: 5</output>
+</div>
+
+<!-- Container for checkboxes -->
+<div class="checkbox-container">
+    <!-- Checkbox 1 -->
+    <input type="checkbox" id="useless-checkbox1" class="checkbox" style="--random-tilt: 0.1;">
+    <label for="useless-checkbox1" class="checkbox-label">Useless Checkbox 1</label>
+    <!-- Checkbox 2 -->
+    <input type="checkbox" id="useless-checkbox2" class="checkbox" style="--random-tilt: 0.2;">
+    <label for="useless-checkbox2" class="checkbox-label">Useless Checkbox 2</label>
+    <!-- Checkbox 3 -->
+    <input type="checkbox" id="useless-checkbox3" class="checkbox" style="--random-tilt: 0.3;">
+    <label for="useless-checkbox3" class="checkbox-label">Useless Checkbox 3</label>
+    <!-- Checkbox 4 -->
+    <input type="checkbox" id="useless-checkbox4" class="checkbox" style="--random-tilt: 0.4;">
+    <label for="useless-checkbox4" class="checkbox-label">Useless Checkbox 4</label>
+    <!-- Checkbox 5 -->
+    <input type="checkbox" id="useless-checkbox5" class="checkbox" style="--random-tilt: 0.5;">
+    <label for="useless-checkbox5" class="checkbox-label">Useless Checkbox 5</label>
+    <!-- Checkbox 6 -->
+    <input type="checkbox" id="useless-checkbox6" class="checkbox" style="--random-tilt: 0.6;">
+    <label for="useless-checkbox6" class="checkbox-label">Useless Checkbox 6</label>
+    <!-- Checkbox 7 -->
+    <input type="checkbox" id="useless-checkbox7" class="checkbox" style="--random-tilt: 0.7;">
+    <label for="useless-checkbox7" class="checkbox-label">Useless Checkbox 7</label>
+    <!-- Checkbox 8 -->
+    <input type="checkbox" id="useless-checkbox8" class="checkbox" style="--random-tilt: 0.8;">
+    <label for="useless-checkbox8" class="checkbox-label">Useless Checkbox 8</label>
+    <!-- Checkbox 9 -->
+    <input type="checkbox" id="useless-checkbox9" class="checkbox" style="--random-tilt: 0.9;">
+    <label for="useless-checkbox9" class="checkbox-label">Useless Checkbox 9</label>
+    <!-- Checkbox 10 -->
+    <input type="checkbox" id="useless-checkbox10" class="checkbox" style="--random-tilt: 1.0;">
+    <label for="useless-checkbox10" class="checkbox-label">Useless Checkbox 10</label>
+</div>
+
+<!-- Container for text input -->
+<div class="text-container">
+    <input type="text" id="useless-text" class="useless-text" placeholder="Type something useless" style="--random-tilt: 0.5;">
+</div>
+
+<!-- Container for hidden message -->
+<div class="color-message-container">
+    <div id="color-message" class="hidden-message" style="--random-tilt: 0.6;">Are you kidding? That would actually be useful!</div>
+</div>
+
+<!-- Container for dropdown -->
+<div class="dropdown-container">
+    <select id="useless-dropdown" class="useless-dropdown" onchange="updateDropdownMessage()" style="--random-tilt: 0.7;">
+        <option value="1">Useless Option 1</option>
+        <option value="2">Useless Option 2</option>
+        <option value="3">Useless Option 3</option>
+    </select>
+</div>
+
+<!-- Label for dropdown -->
+<div id="dropdown-message" class="output-label-dropdown" style="--random-tilt: 0.8;">Useless Option: 1</div>
+
+<!-- Container for useless paragraph -->
+<div class="paragraph-container">
+    <p class="useless-paragraph" style="--random-tilt: 0.9;">This paragraph is completely useless and adds no value. It's just here to take up space.</p>
+</div>
+
+<!-- Container for useless image -->
+<div class="image-container">
+    <img src="https://via.placeholder.com/150" alt="Useless Image" class="useless-image" style="--random-tilt: 1.0;">
+</div>
+
+<!-- Container for useless progress bar -->
+<div class="progress-container">
+    <progress value="50" max="100" class="useless-progress" style="--random-tilt: 0.1;"></progress>
+</div>
+
+<!-- Secret scripts for our useless functionalities -->
+<script>
+// Function to make the "Useless Spin" button spin
+function spinButton() {
+    var button = document.getElementById('useless-btn');
+    button.classList.add('spin-animation');
+    setTimeout(function() {
+        button.classList.remove('spin-animation');
+    }, 1000);
+}
+
+// Function to make the "Useless Wobble" button wobble
+function wobbleButton() {
+    var button = document.getElementById('even-more-useless-btn');
+    button.classList.add('wobble-animation');
+    setTimeout(function() {
+        button.classList.remove('wobble-animation');
+    }, 1000);
+}
+
+// Function to make the "Useless Fade" button fade
+function fadeButton() {
+    var button = document.getElementById('fading-btn');
+    button.classList.add('fade-animation');
+    setTimeout(function() {
+        button.classList.remove('fade-animation');
+    }, 2000);
+}
+
+// Function to make the "Useless Blink" button blink
+function blinkButton() {
+    var button = document.getElementById('blink-btn');
+    button.classList.add('blink-animation');
+    setTimeout(function() {
+        button.classList.remove('blink-animation');
+    }, 1000);
+}
+
+// Function to make the "Useless Shake" button shake
+function shakeButton() {
+    var button = document.getElementById('shake-btn');
+    button.classList.add('shake-animation');
+    setTimeout(function() {
+        button.classList.remove('shake-animation');
+    }, 1000);
+}
+
+// Function to make the "Useless Enlarge" button enlarge
+function enlargeButton() {
+    var button = document.getElementById('enlarge-btn');
+    button.classList.add('enlarge-animation');
+    setTimeout(function() {
+        button.classList.remove('enlarge-animation');
+    }, 1000);
+}
+
+// Function to make the "Useless Jump" button jump
+function jumpButton() {
+    var button = document.getElementById('jump-btn');
+    button.classList.add('jump-animation');
+    setTimeout(function() {
+        button.classList.remove('jump-animation');
+    }, 1000);
+}
+
+// Function to make the "Useless Move" button move
+function moveButton() {
+    var button = document.getElementById('move-btn');
+    button.classList.add('move-animation');
+    setTimeout(function() {
+        button.classList.remove('move-animation');
+    }, 1000);
+}
+
+// Function for another useless action
+function uselessAction() {
+    alert("This action is absolutely useless!");
+}
+
+// Function for yet another useless action
+function anotherUselessAction() {
+    alert("Congratulations, you just wasted a few seconds of your life!");
+}
+
+// Function for one more useless action
+function oneMoreUselessAction() {
+    alert("You clicked this button for no reason at all!");
+}
+
+// Function to update the scale output
+function updateScaleOutput() {
+    var scaleValue = document.getElementById('useless-scale').value;
+    document.getElementById('scale-output').textContent = 'Useless Scale: ' + scaleValue;
+}
+
+// Function to update the dropdown message
+function updateDropdownMessage() {
+    var dropdownValue = document.getElementById('useless-dropdown').value;
+    document.getElementById('dropdown-message').textContent = 'Useless Option: ' + dropdownValue;
+}
+</script>
+
 </body>
 </html>
